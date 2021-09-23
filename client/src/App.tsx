@@ -1,23 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import Login from './components/Login'
+import Login from './containers/Login'
+import Home from './containers/Home'
+import { AuthProvider } from './context/authcontext';
 
 function App() {
+
+  const [user, setUser] = useState({
+    user_id:0,
+    email:"",
+    name: ""
+  })
+
   return (
-    <Router>
+    <AuthProvider user={user}>
+      <Router>
         <div className="App">
           <Switch>
             <Route exact path="/" component={Login} />
-
+            <Route exact path="/home" component={Home} />
           </Switch>
         </div>
       </Router>
+    </AuthProvider>
   );
 }
 

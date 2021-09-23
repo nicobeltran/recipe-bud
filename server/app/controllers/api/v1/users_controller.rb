@@ -22,7 +22,7 @@ class Api::V1::UsersController < ApplicationController
     def authenticate
         @user =  User.find_by(email: params[:email], password: params[:password])
         if @user
-            render json: { user_id: @user.id }, status: 200
+            render json: { email: @user.email, name: @user.name, user_id: @user.id }, status: 200
         else
             render json: { error: 'Authentication failed'}, status: 400
         end

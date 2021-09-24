@@ -11,3 +11,8 @@ export interface User extends BaseUser {
     name: string
     user_id: number
 }
+
+export interface NewUser extends BaseUser {
+    password: string,
+    name: string
+}

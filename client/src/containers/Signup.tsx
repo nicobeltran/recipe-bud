@@ -1,56 +1,58 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { withRouter } from 'react-router';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
-import API from '../utils/API';
-import { AuthContext } from '../context/authcontext';
+import { withRouter } from 'react-router';
 import { Link, useHistory } from 'react-router-dom';
 import { ErrorMessageConstants, Constants } from '../utils/Constants';
-import './Login.css';
+import API from '../utils/API';
 
-const Login = () => {
+const Signup = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [name, setName] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
 
-    const authContext = React.useContext(AuthContext);
     const history = useHistory();
 
-    const handleLogin = async (event : SyntheticEvent) => {
+    const handleSubmit = async (event : SyntheticEvent) => {
         event.preventDefault()
 
-        if (email == "" || password == "") {
+        if (email == "" || password == "" || name == "") {
             setErrorMessage(ErrorMessageConstants.loginError_emailOrPasswordEmpty)
         }
         else {
             setErrorMessage("")
-            const response = await API.login({email, password});
+            const response = await API.signup({email, password, name});
 
             if (response) {
                 if (response.hasOwnProperty('error')) {
-                    setErrorMessage(ErrorMessageConstants.loginError_invalidLogin)
+                    setErrorMessage("Error creating user.")
                 }
                 else {
-                    authContext?.setCurrentUser(response);
-                    history.push("/home")
+                    history.push("/login")
+                    // show success somehow
                 }
             }
             else {
                 // show error
             }
-            
         }
         
     }
 
     return (
         <Container>
-            <Form className="LoginForm" onSubmit={handleLogin}>
-                <h1 className="mb-3">{Constants.login_loginHeader}</h1>
+            {/* todo change classname */}
+            <Form className="LoginForm" onSubmit={handleSubmit}>
+                <h1 className="mb-3">Sign up for RecipeBud</h1>
+                <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Label>Full Name</Form.Label>
+                    <Form.Control type="name" placeholder="Full name" value={name} onChange={(event) => setName(event.target.value)} />
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className="FormLabel">Email address</Form.Label>
                     <Form.Control type="email" placeholder={Constants.login_loginEmailPlaceholder} value={email} onChange={(event) => setEmail(event.target.value)} />
@@ -68,25 +70,23 @@ const Login = () => {
                     </Col>
                     <Col md={3} />
                 </Row>
+
                 <Row className="mb-3">
                     <Col>
                         <Button variant="primary" type="submit">
-                            {Constants.login_loginSubmit}
+                            Submit
                         </Button>
                     </Col>
                 </Row>
-
                 <Row>
                     <Col>
-                        <Link to="/signup">Sign up for RecipeBud</Link>
+                        <p>Already have an account? <Link to="/login">Login</Link></p>
                     </Col>
                 </Row>
 
             </Form>
         </Container>
-            
-
-        )
+    )
 }
 
-export default withRouter(Login);
+export default withRouter(Signup)

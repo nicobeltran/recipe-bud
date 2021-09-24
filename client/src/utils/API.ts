@@ -1,4 +1,4 @@
-import { AuthenticateUser } from '../types/types';
+import { AuthenticateUser, NewUser } from '../types/User';
 
 const baseUrl = "http://localhost:8000/api/v1"
 const usersUrl = "/users"
@@ -16,7 +16,16 @@ export default {
             .then(response => response.json())
             .catch((error) => {
             })
+    },
+    signup: (data: NewUser) => {
+      return fetch(`${baseUrl}${usersUrl}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)})
+        .then(response => response.json())
+        .catch((error) => {
+        })
     }
-
-
 }

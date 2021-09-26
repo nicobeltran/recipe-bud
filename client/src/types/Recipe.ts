@@ -9,3 +9,7 @@ export interface Recipe {
 export interface RecipeProps {
     recipes: Array<Recipe>
 }
+
+export interface RecipeListItemProps {
+    recipe: Recipe
+}

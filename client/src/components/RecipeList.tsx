@@ -7,10 +7,18 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { ErrorMessageConstants, Constants } from '../utils/Constants';
 import { Recipe, RecipeProps } from '../types/Recipe';
+import RecipeListItem from './RecipeListItem';
 
-const RecipeList: FC<RecipeProps> = ( { recipes }): JSX.Element => {    
+const RecipeList: FC<RecipeProps> = ( { recipes }): JSX.Element => { 
+    
+    const recipeListItems = recipes.map((recipe) => {
+        return <RecipeListItem recipe={recipe} />
+    })
+    
     return (
-        <div>List</div>
+        <div>
+            {recipeListItems}
+        </div>
     )
 }
 

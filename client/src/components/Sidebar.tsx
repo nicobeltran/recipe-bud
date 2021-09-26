@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from "react-router"
 import { AuthContext } from '../context/authcontext';
 import Row from 'react-bootstrap/Row';
@@ -8,12 +8,33 @@ import Form from 'react-bootstrap/Form';
 import { ErrorMessageConstants, Constants } from '../utils/Constants';
 import './Sidebar.css'
 import RecipeList from './RecipeList';
+import API from '../utils/API';
 
 const Sidebar = () => {
     const authContext = React.useContext(AuthContext)
     const [searchText, setSearchText] = useState("")
 
     const [recipes, setRecipes] = useState([])
+
+    useEffect(() => {
+        fetchRecipes();
+        }, [])
+
+    async function fetchRecipes() {
+        const response = await API.getUserRecipes(authContext!.currentUser.user_id)
+
+        if (response) {
+            if (response.hasOwnProperty('error')) {
+                // show error
+            }
+            else {
+                setRecipes(response)
+            }
+        }
+        else {
+            // show error
+        }
+    }
 
     return(
         <div>

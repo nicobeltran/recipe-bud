@@ -3,6 +3,7 @@ import { AuthenticateUser, NewUser } from '../types/User';
 const baseUrl = "http://localhost:8000/api/v1"
 const usersUrl = "/users"
 const authenticateUrl = "/authenticate"
+const recipesUrl = "/recipes"
 
 export default {
 
@@ -24,6 +25,16 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)})
+        .then(response => response.json())
+        .catch((error) => {
+        })
+    },
+    getUserRecipes: (user_id: number) => {
+      return fetch(`${baseUrl}${usersUrl}/${user_id}${recipesUrl}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }})
         .then(response => response.json())
         .catch((error) => {
         })

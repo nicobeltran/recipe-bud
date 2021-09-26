@@ -34,11 +34,11 @@ const Signup = () => {
                 }
                 else {
                     history.push("/login")
-                    // show success somehow
+                    // TODO: show success somehow
                 }
             }
             else {
-                // show error
+                // TODO: show error
             }
         }
         

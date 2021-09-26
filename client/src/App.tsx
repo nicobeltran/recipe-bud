@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Login from './containers/Login'
 import Signup from './containers/Signup'
-import Home from './containers/Home'
+import Dashboard from './containers/Dashboard'
 import { AuthProvider } from './context/authcontext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,7 +27,7 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
       </Router>

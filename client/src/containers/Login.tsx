@@ -36,7 +36,7 @@ const Login = () => {
                 }
                 else {
                     authContext?.setCurrentUser(response);
-                    history.push("/home")
+                    history.push("/dashboard")
                 }
             }
             else {

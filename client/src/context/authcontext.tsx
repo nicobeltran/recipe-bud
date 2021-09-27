@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { User } from '../types/User'
+import { User } from '../types/UserTypes'
 
 interface AuthContextInterface {
     currentUser: User,

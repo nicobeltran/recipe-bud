@@ -1,4 +1,4 @@
-import { AuthenticateUser, NewUser } from '../types/User';
+import { AuthenticateUser, NewUser } from '../types/UserTypes';
 
 const baseUrl = "http://localhost:8000/api/v1"
 const usersUrl = "/users"

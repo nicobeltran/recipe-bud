@@ -1,3 +1,5 @@
+import { JsxElement } from "typescript";
+
 export interface Recipe {
     id: number,
     name: string,
@@ -6,10 +8,17 @@ export interface Recipe {
     user_id: number
 }
 
-export interface RecipeProps {
+export interface RecipeListProps {
     recipes: Array<Recipe>
 }
 
 export interface RecipeListItemProps {
     recipe: Recipe
+    key: number
+}
+
+export interface RecipeRoute {
+    id: number
+    path: string
+    main: any
 }

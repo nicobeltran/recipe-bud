@@ -1,0 +1,19 @@
+.recipeListItem {
+    text-align: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid#201526;
+    color:#201526;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.recipeListItem:hover {
+    background: #FDFDFD;
+    /* cursor: pointer; */
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
